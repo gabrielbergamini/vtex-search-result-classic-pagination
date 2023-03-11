@@ -23,7 +23,7 @@ const Pagination = () => {
     )?.value,
   };
 
-  // create an array with n elements based on a integer value
+  // create an array with n elements based on the integer value of totalNumberOfPages
   const pages = Array.from(Array(totalNumberOfPages).keys()).map((i) => i + 1);
 
   // create a new array with the pages that will be displayed based on the current page showing 10 after and 10 before
@@ -44,7 +44,7 @@ const Pagination = () => {
     pagesToShow.unshift(1);
   }
 
-  // validate if last page needs ... in the beginning
+  // validate if first page needs ... in the beginning
   const needsDotsAtTheBeginning = pagesToShow[1] !== 2;
 
   // validate if last page needs ... in the end
