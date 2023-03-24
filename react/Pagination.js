@@ -102,14 +102,6 @@ const Pagination = () => {
               <span
                 key={thePage}
                 className={`${handles.paginationbuttonactive} inline-block bg-black-20 br2 pa5 ma2 black self-start`}
-
-                // style={{
-                //   backgroundColor: "#BBB",
-                //   borderRadius: "5px",
-                //   padding: "10px",
-                //   margin: "4px",
-                //   color: "#111111",
-                // }}
               >
                 {thePage}
               </span>
@@ -119,14 +111,6 @@ const Pagination = () => {
               <a
                 key={thePage}
                 className={`${handles.paginationbutton} no-underline inline-block bg-black-10 br2 pa5 ma2 near-black self-start hover-bg-black-20`}
-                // style={{
-                //   backgroundColor: "#DDD",
-                //   borderRadius: "5px",
-                //   padding: "10px",
-                //   margin: "4px",
-                //   color: "#111111",
-                //   textDecoration: "none",
-                // }}
                 href={`/${queryData.query}?page=${
                   thePage !== "Primeira" &&
                   thePage !== "Última" &&
