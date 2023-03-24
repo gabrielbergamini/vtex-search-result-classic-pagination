@@ -1,11 +1,22 @@
 import React from "react";
 // eslint-disable-next-line no-restricted-imports
 import { path } from "ramda";
-import classNames from "classnames";
 import { useSearchPage } from "vtex.search-page-context/SearchPageContext";
+import { useCssHandles } from "vtex.css-handles";
+
+const CSS_HANDLES = [
+  "pagination",
+  "paginationwrapper",
+  "paginationinfo",
+  "paginationbutton",
+  "paginationbuttonactive",
+];
 
 const Pagination = () => {
   const { searchQuery, maxItemsPerPage, page } = useSearchPage();
+
+  // CSS Handles
+  const handles = useCssHandles(CSS_HANDLES);
 
   // total number of products
   const totalNumberProducts = path(
@@ -69,24 +80,36 @@ const Pagination = () => {
   return (
     <div
       style={{ marginTop: "40px" }}
-      className={classNames("w-100 flex justify-center flex-wrap text-center")}
+      className={`${handles.pagination} flex flex-wrap justify-center`}
     >
-      <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
+      <div
+        className={`${handles.paginationinfo} flex justify-center items-center ma2 flex-wrap bg-black-80 ph5 pv3 br4 f6 white`}
+        // style={{ display: "flex", width: "100%", justifyContent: "center" }}
+      >
+        <svg className={`w1-ns mr3`} style={{fill: "white"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z" />
+        </svg>
+
         {productsShowingMessage}
       </div>
-      <div id="total" style={{ display: "flex", marginTop: "1rem" }}>
+      <div
+        id="total"
+        className={`${handles.paginationwrapper} flex justify-center ma5 flex-wrap`}
+      >
         {pagesToShow.map((thePage) =>
           page == thePage ? (
             <>
               <span
                 key={thePage}
-                style={{
-                  backgroundColor: "#BBB",
-                  borderRadius: "5px",
-                  padding: "10px",
-                  margin: "4px",
-                  color: "#111111",
-                }}
+                className={`${handles.paginationbuttonactive} inline-block bg-black-20 br2 pa5 ma2 black self-start`}
+
+                // style={{
+                //   backgroundColor: "#BBB",
+                //   borderRadius: "5px",
+                //   padding: "10px",
+                //   margin: "4px",
+                //   color: "#111111",
+                // }}
               >
                 {thePage}
               </span>
@@ -95,14 +118,15 @@ const Pagination = () => {
             <>
               <a
                 key={thePage}
-                style={{
-                  backgroundColor: "#DDD",
-                  borderRadius: "5px",
-                  padding: "10px",
-                  margin: "4px",
-                  color: "#111111",
-                  textDecoration: "none",
-                }}
+                className={`${handles.paginationbutton} no-underline inline-block bg-black-10 br2 pa5 ma2 near-black self-start hover-bg-black-20`}
+                // style={{
+                //   backgroundColor: "#DDD",
+                //   borderRadius: "5px",
+                //   padding: "10px",
+                //   margin: "4px",
+                //   color: "#111111",
+                //   textDecoration: "none",
+                // }}
                 href={`/${queryData.query}?page=${
                   thePage !== "Primeira" &&
                   thePage !== "Última" &&
