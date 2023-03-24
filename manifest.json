@@ -1,7 +1,7 @@
 {
-  "vendor": "CHANGE_ME",
+  "vendor": "belezademulherio",
   "name": "vtex-search-result-classic-pagination",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "title": "VTEX Search Result Classic Pagination",
   "description": "A classic pagination component",
   "defaultLocale": "pt-BR",
