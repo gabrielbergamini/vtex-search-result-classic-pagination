@@ -80,7 +80,7 @@ const Pagination = () => {
   return (
     <div
       style={{ marginTop: "40px" }}
-      className={`${handles.pagination} flex flex-wrap justify-center`}
+      className={`${handles.pagination} flex flex-wrap justify-center flex-column items-center`}
     >
       <div
         className={`${handles.paginationinfo} flex justify-center items-center ma2 flex-wrap bg-black-80 ph5 pv3 br4 f6 white`}
