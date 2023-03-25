@@ -37,6 +37,19 @@ const Pagination = () => {
     )?.value,
   };
 
+  // create strings for parameters
+  const map = queryData.map !== "c" ? `&map=${queryData.map}` : "";
+  const orderBy =
+    queryData.orderBy !== "OrderByReleaseDateDESC"
+      ? `&orderBy=${queryData.orderBy}`
+      : "";
+  const priceRange =
+    queryData.priceRange === undefined
+      ? ""
+      : `&priceRange=${queryData.priceRange}`;
+
+  console.log("queryData", queryData.map);
+
   // create an array with n elements based on the integer value of totalNumberOfPages
   const pages = Array.from(Array(totalNumberOfPages).keys()).map((i) => i + 1);
 
@@ -129,11 +142,7 @@ const Pagination = () => {
                     : thePage == "«"
                     ? page - 1
                     : page + 1
-                }&map=${queryData.map}&orderBy=${
-                  queryData.orderBy
-                }&priceRange=${
-                  queryData.priceRange ? queryData.priceRange : ""
-                }`}
+                }${map}${orderBy}${priceRange}`.trim()}
                 title={`Ir para ${
                   thePage != "Primeira" &&
                   thePage != "Última" &&
