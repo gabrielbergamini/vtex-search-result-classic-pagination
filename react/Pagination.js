@@ -36,6 +36,7 @@ const Pagination = () => {
       (facet) => facet.key === "priceRange"
     )?.value,
   };
+  console.log("aa", queryData.order);
 
   // create strings for parameters
   const map = 
