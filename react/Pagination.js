@@ -31,27 +31,32 @@ const Pagination = () => {
   const queryData = {
     query: path(["variables", "query"], searchQuery),
     map: path(["variables", "map"], searchQuery),
-    orderBy: path(["variables", "orderBy"], searchQuery),
+    order: path(["variables", "orderBy"], searchQuery),
     priceRange: path(["variables", "selectedFacets"], searchQuery)?.find(
       (facet) => facet.key === "priceRange"
     )?.value,
   };
+  console.log("aa", queryData.order);
 
   // create strings for parameters
-  const map = queryData.map !== "c" ? `&map=${queryData.map}` : "";
-  const orderBy =
-    queryData.orderBy !== "OrderByReleaseDateDESC"
-      ? `&orderBy=${queryData.orderBy}`
+  const map = 
+  queryData.map !== "c" && queryData.map !== "c,c" && queryData.map !== "c,c,c" 
+    ? `&map=${queryData.map}`
+    : "";
+  const order =
+    queryData.order !== "OrderByReleaseDateDESC"
+      ? `&order=${queryData.order}`
       : "";
   const priceRange =
     queryData.priceRange === undefined
       ? ""
       : `&priceRange=${queryData.priceRange}`;
 
-  console.log("queryData", queryData.map);
-
   // create an array with n elements based on the integer value of totalNumberOfPages
-  const pages = Array.from(Array(totalNumberOfPages).keys()).map((i) => i + 1);
+  const pages = [];
+  for (let i = 0; i < totalNumberOfPages; i++) {
+    pages.push(i + 1);
+  }
 
   // create a new array with the pages that will be displayed based on the current page showing 3 after and 10 before
   const pagesToShow = pages.filter(
@@ -142,7 +147,7 @@ const Pagination = () => {
                     : thePage == "«"
                     ? page - 1
                     : page + 1
-                }${map}${orderBy}${priceRange}`.trim()}
+                }${map}${order}${priceRange}`.trim()}
                 title={`Ir para ${
                   thePage != "Primeira" &&
                   thePage != "Última" &&
